@@ -1,0 +1,249 @@
+; This is the Calva REPL Window.
+; It's just a file, really, with some special treatment from Calva.
+; Use it as a REPL input prompt if you like. (When the REPL is connected.)
+; TIPS: The keyboard shortcut `ctrl+alt+o r` shows and focuses this window
+; Please see https://calva.io/repl-window/ for more info.
+; Happy coding! ♥️
+
+; TIPS: As with any Clojure file when the REPL is connected:
+; - `alt+enter` evaluates the current top level form.
+; - `ctrl+enter` evaluates the current form.
+; Special for this file:
+; - `alt+up` and `alt+down` traverse up and down the REPL command history
+;    when the cursor is after the last contents at the prompt
+; 
+; See also the Calva Inspector: https://calva.io/inspector/
+
+PLEASE NOTE
+We will update the default location of this file.
+The new default location will be
+  "<projectRootPath>/.calva/repl.calva-repl"
+For now the legacy path is used by default.
+To give yourself a smooth transition, you can opt in
+to the change, by configuring this setting as false:
+  "calva.useLegacyReplWindowPath"
+and then add "**/.calva/repl.calva-repl" to your ".gitignore" file.
+
+
+This file is configured as the output destination for all REPL output.
+You can configure this with the setting:
+  "calva.outputDestinations"
+
+
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: pushd c:\Users\mike\wb\stonks & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.1.1"] -- update-in :plugins conj [cider/cider-nrepl,"0.47.1"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless & popd
+; Using host:port 127.0.0.1:55383 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+"Please see https://calva.io/output/#about-stdout-in-the-repl-window
+about why stdout printed to this file is prepended with `;` to be line comments."
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: db.clj
+; 
+; ; clj  stonks.models.db 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:17:5).
+; No such var: sql/db-do-commands
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+#'stonks.models.db/read-guests
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+#'stonks.models.db/save-message
+clj꞉stonks.models.db꞉>(use 'stonks.models.db)
+(create-stonks-table)
+
+
+; Evaluating file: db.clj
+#'stonks.models.db/save-message
+clj꞉stonks.models.db꞉> (create-stonks-table)
+(0)
+clj꞉stonks.models.db꞉> 
+(read-guests)
+nil
+clj꞉stonks.models.db꞉> 
+#'stonks.models.db/save-stonks
+clj꞉stonks.models.db꞉> 
+#'stonks.models.db/read-stonks
+clj꞉stonks.models.db꞉> (read-stonks)
+nil
+clj꞉stonks.models.db꞉> 
+(save-stonks "GOOG" "Google")
+{:last_insert_rowid() 1}
+clj꞉stonks.models.db꞉> 
+(read-stonks)
+({:id 1, :timestamp 1731515915231, :ticker "GOOG", :company "Google"})
+clj꞉stonks.models.db꞉> 
+; Evaluating file: home.clj
+#'stonks.routes.home/home-routes
+clj꞉stonks.routes.home꞉> (save-stonks "AAPL" "Apple")
+; AAPL Apple
+"<!DOCTYPE html>\n<html><head><title>Welcome to stonks</title><link href=\"/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"></head><body><h1>Stonks, am I right?</h1><p>Welcome to stonks</p><p></p><ul class=\"stonks\"><li><blockquote>Howdy</blockquote><p>-<cite>Mike</cite></p><time></time></li><li><blockquote>Hello</blockquote><p>-<cite>Mike</cite></p><time></time></li></ul><hr><form action=\"/\" method=\"POST\"><p>Ticker:</p><input id=\"ticker\" name=\"ticker\" type=\"text\"><p>Company Name:</p><input id=\"company\" name=\"company\" type=\"text\"><br><input type=\"submit\" value=\"submit\"></form></body></html>"
+clj꞉stonks.routes.home꞉> 
+(ns-unmap 'user 'save-stonks)
+nil
+clj꞉stonks.routes.home꞉> 
+(use 'stonks.models.db)
+nil
+; 
+; REJECTED: attempt to replace interned var #'stonks.routes.home/save-stonks with #'stonks.models.db/save-stonks in stonks.routes.home, you must ns-unmap first
+clj꞉stonks.routes.home꞉> 
+(ns-unmap 'user 'save-stonks)
+nil
+clj꞉stonks.routes.home꞉> 
+(use 'stonks.models.db)
+nil
+; 
+; REJECTED: attempt to replace interned var #'stonks.routes.home/save-stonks with #'stonks.models.db/save-stonks in stonks.routes.home, you must ns-unmap first
+clj꞉stonks.routes.home꞉> 
+; Evaluating file: db.clj
+#'stonks.models.db/save-stonks
+clj꞉stonks.models.db꞉> (read-stonks)
+({:id 1, :timestamp 1731515915231, :ticker "GOOG", :company "Google"})
+clj꞉stonks.models.db꞉> 
+(save-stonks "AAPL" "Apple")
+{:last_insert_rowid() 2}
+clj꞉stonks.models.db꞉> 
+(read-stonks)
+({:id 2, :timestamp 1731516310561, :ticker "AAPL", :company "Apple"}
+ {:id 1, :timestamp 1731515915231, :ticker "GOOG", :company "Google"})
+clj꞉stonks.models.db꞉> 
+#'stonks.routes.home/show-stonks
+clj꞉stonks.routes.home꞉> 
+; Evaluating file: home.clj
+#'stonks.routes.home/home-routes
+clj꞉stonks.routes.home꞉> (show-stonks)
+[:ul.stonks
+ ([:li [:blockquote "AAPL"] [:p "-" [:cite "Apple"]] [:time 1731516310561]]
+  [:li [:blockquote "GOOG"] [:p "-" [:cite "Google"]] [:time 1731515915231]])]
+clj꞉stonks.routes.home꞉> 
+#'stonks.routes.home/save-stonks
+clj꞉stonks.routes.home꞉>(save-stonks "META" "Facebook")
+"<!DOCTYPE html>\n<html><head><title>Welcome to stonks</title><link href=\"/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"></head><body><h1>Stonks, am I right?</h1><p>Welcome to stonks</p><p></p><ul class=\"stonks\"><li><blockquote>META</blockquote><p>-<cite>Facebook</cite></p><time>1731516721577</time></li><li><blockquote>AAPL</blockquote><p>-<cite>Apple</cite></p><time>1731516310561</time></li><li><blockquote>GOOG</blockquote><p>-<cite>Google</cite></p><time>1731515915231</time></li></ul><hr><form action=\"/\" method=\"POST\"><p>Ticker:</p><input id=\"ticker\" name=\"ticker\" type=\"text\"><p>Company Name:</p><input id=\"company\" name=\"company\" type=\"text\"><br><input type=\"submit\" value=\"submit\"></form></body></html>"
+clj꞉stonks.routes.home꞉> 
+(show-stonks)
+[:ul.stonks
+ ([:li [:blockquote "META"] [:p "-" [:cite "Facebook"]] [:time 1731516721577]]
+  [:li [:blockquote "AAPL"] [:p "-" [:cite "Apple"]] [:time 1731516310561]]
+  [:li [:blockquote "GOOG"] [:p "-" [:cite "Google"]] [:time 1731515915231]])]
+clj꞉stonks.routes.home꞉> 
+; Evaluating file: db.clj
+#'stonks.models.db/save-stonks
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+#'stonks.models.db/save-stonks
+clj꞉stonks.models.db꞉> 
+; Evaluating file: home.clj
+#'stonks.routes.home/home-routes
+clj꞉stonks.routes.home꞉> 
+#'stonks.routes.home/show-stonks
+clj꞉stonks.routes.home꞉> (show-stonks)
+[:ul.stonks
+ ([:li [:blockquote "META"] [:p "-" [:cite "Facebook"]] [:time 1731516721577]]
+  [:li [:blockquote "AAPL"] [:p "-" [:cite "Apple"]] [:time 1731516310561]]
+  [:li [:blockquote "GOOG"] [:p "-" [:cite "Google"]] [:time 1731515915231]])]
+clj꞉stonks.routes.home꞉> 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:23:5).
+; No such var: jdbc/query
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+; 
+; ; clj  stonks.models.db 
+; Execution error (ClassNotFoundException) at java.net.URLClassLoader/findClass (REPL:-1).
+; java.jdbc.DriverManager
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+; 
+; Execution error (ClassNotFoundException) at java.net.URLClassLoader/findClass (REPL:-1).
+; java.jdbc.DriverManager
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+; Execution error (ClassNotFoundException) at java.net.URLClassLoader/findClass (REPL:-1).
+; java.jdbc.DriverManager
+clj꞉stonks.models.db꞉> 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\project.clj:1:1).
+; Unable to resolve symbol: defproject in this context
+clj꞉user꞉> 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:12:5).
+; No such var: jdbc/query
+clj꞉stonks.models.db꞉> (jdbc/)
+; Evaluating file: db.clj
+; 
+; Execution error (ClassNotFoundException) at java.net.URLClassLoader/findClass (REPL:-1).
+; java.jdbc.DriverManager
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+; 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:12:5).
+; No such var: jdbc/query
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:17:5).
+; No such var: jdbc/insert-record!
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+; 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:12:5).
+; No such var: jdbc/query
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> 
+; Evaluating file: db.clj
+; 
+; Syntax error compiling at (c:\Users\mike\wb\stonks\src\stonks\models\db.clj:12:5).
+; No such var: jdbc/query
+; Evaluation of file db.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.models.db꞉> (:require [clojure.java.jdbc :as jdbc])
+; Syntax error (ClassNotFoundException) compiling at (c:\Users\mike\wb\stonks\.calva\output-window\output.calva-repl:206:24).
+; clojure.java.jdbc
+clj꞉stonks.models.db꞉> 
+(quit)
+; Syntax error compiling at (c:\Users\mike\wb\stonks\.calva\output-window\output.calva-repl:210:1).
+; Unable to resolve symbol: quit in this context
+clj꞉stonks.models.db꞉> 
+; nREPL connection failed: Error: read ECONNRESET
+; Failed connecting.
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: pushd c:\Users\mike\wb\stonks & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.1.1"] -- update-in :plugins conj [cider/cider-nrepl,"0.47.1"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless & popd
+; Using host:port 127.0.0.1:49933 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: db.clj
+#'stonks.models.db/create-stonks-table
+clj꞉stonks.models.db꞉> (create-stonks-table)
+(0)
+clj꞉stonks.models.db꞉> 
+; Evaluating file: home.clj
+#'stonks.routes.home/home-routes
+clj꞉stonks.routes.home꞉> 
+; Evaluating file: handler.clj
+; 
+; ; clj  stonks.handler 
+; Syntax error macroexpanding clojure.core/ns at (c:\Users\mike\wb\stonks\src\stonks\handler.clj:1:1).
+; ((:require [compojure.core :refer [defroutes routes]] [ring.middleware.resource :refer [wrap-resource]] [ring.middleware.file-info :refer [wrap-file-info]] [hiccup.middleware :refer [wrap-base-url]] [compojure.handler :as handler] [compojure.route :as route] [stonks.routes.home :refer [home-routes] [stonks.models.db :as db]])) - failed: Extra input spec: :clojure.core.specs.alpha/ns-form
+; Evaluation of file handler.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉stonks.handler꞉> 
+; Evaluating file: handler.clj
+#'stonks.handler/app
+clj꞉stonks.handler꞉> 

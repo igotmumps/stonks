@@ -1,0 +1,11 @@
+(use 'stonks.models.db)
+(read-stonks)
+(use 'models.db)
+(use 'stonks.models.db)
+(db)
+db
+(read-stonks)
+(save-stonks "DUDE" "The Dude Company")
+(quit)
+(:require [clojure.java.jdbc :as jdbc])
+(quit)
